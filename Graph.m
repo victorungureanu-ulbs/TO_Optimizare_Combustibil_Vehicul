@@ -74,10 +74,10 @@ classdef Graph < handle
                 end
 
             %AFISARE Rezultat
-            fprintf('Node\tDistance\tPath\n');
+            fprintf('Nod\tConsum\tCale\n');
             for i = 1:obj.V
                 if isinf(dist(i))
-                    fprintf('%d\tINF\t\tNo path exists\n', i);  % Nu exista drum
+                    fprintf('%d\tINF\t\tNu exista cale\n', i);  % Nu exista drum
                 else
                     fprintf('%d\t%d\t\t', i, dist(i));  % Printam distanta
                     path = [];  
