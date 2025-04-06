@@ -30,7 +30,7 @@ classdef Graph < handle
         end
 
         %%%%%%Algoritmul A*%%%%%%%%
-        % Algoritm A* simplificat (similar cu Dijkstra)
+         % Algoritm A* simplificat (similar cu Dijkstra)
         function [dist, parent] = astarSimplu(obj, start, goal)
             fprintf('A* - Găsire drum de la nodul %d la nodul %d\n', start, goal);
 
@@ -44,6 +44,10 @@ classdef Graph < handle
 
             % Similar cu "visited" din Dijkstra, dar A* poate revizita nodurile
             closed = false(1, obj.V);  % noduri procesate complet
+            
+            % Vector boolean pentru a verifica rapid prezența în open
+            in_open = false(1, obj.V);
+            in_open(start) = true;
 
             % Lista de noduri deschise (de explorat) - începe cu nodul de start
             open = [start];
@@ -55,6 +59,7 @@ classdef Graph < handle
 
                 % Eliminăm nodul curent din lista open
                 open(idx) = [];
+                in_open(current) = false;
 
                 % Marcăm ca procesat
                 closed(current) = true;
@@ -99,15 +104,15 @@ classdef Graph < handle
                         parent(neighbor) = current;
                         g_score(neighbor) = tentative_g;
 
-                        % Euristică simplă (constantă) - ce diferențiază A* de Dijkstra
-                        % Setează la 0 pentru a fi identic cu Dijkstra
-                        h_score = 1;
+                        % Folosim o euristică reală care direcționează către țintă
+                        h_score = abs(neighbor - goal);
 
                         f_score(neighbor) = g_score(neighbor) + h_score;
 
                         % Adăugăm vecinul în lista open dacă nu este deja
-                        if ~ismember(neighbor, open)
+                        if ~in_open(neighbor)
                             open = [open, neighbor];
+                            in_open(neighbor) = true;
                         end
                     end
                 end
