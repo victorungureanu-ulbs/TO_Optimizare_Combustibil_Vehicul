@@ -68,7 +68,7 @@ classdef Graph < handle
                 if current == goal
                     % Afișăm rezultatul
                     fprintf('Drum găsit!\n');
-                    fprintf('Cost total: %d\n', g_score(goal));
+                    fprintf('Cost total: %f\n', g_score(goal));
 
                     % Afișăm drumul
                     fprintf('Drum: ');
@@ -175,7 +175,7 @@ classdef Graph < handle
                 if isinf(dist(i))
                     fprintf('%d\tINF\t\tNu exista cale\n', i);  % Nu exista drum
                 else
-                    fprintf('%d\t%d\t\t', i, dist(i));  % Printam distanta
+                    fprintf('%d\t%f\t\t', i, dist(i));  % Printam distanta
                     path = [];
                     current = i;
                     while current ~= -1
@@ -207,7 +207,7 @@ classdef Graph < handle
                 fprintf('Nu exista drum intre nodurile %d si %d\n', start, sfarsit);
             else
                 fprintf('Cel mai scurt drum gasit:\n');
-                fprintf('Cost total: %d\n', minCost);
+                fprintf('Cost total: %f\n', minCost);
                 fprintf('Drum: ');
                 fprintf('%d ', drumCelMaiBun);
                 fprintf('\n');
