@@ -8,16 +8,16 @@ classdef Cost < handle
     
     methods
         % Constructor
-        function obj = Cost(distanta, viteza, greutate, tip_drum)
+        function obj = Cost(distanta,tip_drum, greutate, viteza )
             % Seteaza valorile implicite daca sunt omise
             if nargin < 4
-                tip_drum = 1.0;
+                viteza = 60;
             end
             if nargin < 3
                 greutate = 1500.0;
             end
             if nargin < 2
-                viteza = 60.0;
+                tip_drum = 1.0;
             end
             if nargin < 1
                 distanta = 0.0;

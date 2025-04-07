@@ -105,7 +105,8 @@ classdef Graph < handle
                         g_score(neighbor) = tentative_g;
 
                         % Folosim o euristică reală care direcționează către țintă
-                        h_score = abs(neighbor - goal);
+                        %h_score = abs(neighbor - goal);
+                        h_score = 1;
 
                         f_score(neighbor) = g_score(neighbor) + h_score;
 
